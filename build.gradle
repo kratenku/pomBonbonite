@@ -1,0 +1,97 @@
+plugins {
+    id("java")
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+defaultTasks 'clean', 'test'
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    // Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+    implementation("io.github.bonigarcia:webdrivermanager:6.3.4")
+    // Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation("org.seleniumhq.selenium:selenium-java:4.47.0")
+    // Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-java
+    implementation("io.cucumber:cucumber-java:7.34.6")
+
+    // Source: https://mvnrepository.com/artifact/io.cucumber/gherkin
+    //implementation("io.cucumber:gherkin:42.0.1")
+
+    // Source: https://mvnrepository.com/artifact/com.aventstack/extentreports
+    implementation("com.aventstack:extentreports:5.1.2")
+    // Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine
+    testImplementation("io.cucumber:cucumber-junit-platform-engine:7.34.6")
+
+    // Source: https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite
+    testImplementation("org.junit.platform:junit-platform-suite:6.1.3")
+
+    // Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    //testImplementation("io.cucumber:cucumber-junit:7.34.6")
+    testImplementation("io.cucumber:cucumber-picocontainer:7.34.6")
+}
+
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    systemProperty('cucumber.filter.tags', System.getProperty('cucumber.filter.tags'))
+    systemProperty('file.encoding', 'UTF-8')
+
+    doFirst {
+        def funcionalidad = System.getProperty("cucumber.filter.tags")?.replaceAll("[^a-zA-Z0-9]", "") ?: "defaultFuncionalidad"
+        systemProperty("funcionalidad", funcionalidad)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('cucumber') {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.testRuntimeClasspath
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:',
+                    '--glue', 'stepdefinitions',
+                    '--glue', 'pages',
+                    '--glue', 'hooks',
+                    '--features', 'src/test/resources/features',
+                    '--strict',
+                    '--tags', System.getProperty("cucumber.filter.tags"),
+                    '--name', System.getProperty("cucumber.test.name")
+            ]
+//            systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+        }
+    }
+}
+
+tasks.withType(JavaExec).configureEach {
+    systemProperty 'org.apache.logging.log4j.simplelog.org.apache.http.wire', 'OFF'
+    systemProperty 'org.apache.logging.log4j.simplelog.org.apache.http.headers', 'WARN'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
