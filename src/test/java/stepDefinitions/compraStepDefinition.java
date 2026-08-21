@@ -16,7 +16,7 @@ public class compraStepDefinition {
 
     public compraStepDefinition() throws Exception {
         this.pageCompra = new compraPage();
-        this.modeloRegistro = new registroDTO("", "", "", "", "", "","","");
+        this.modeloRegistro = new registroDTO("", "", "", "", "", "","","","","");
     }
 
 

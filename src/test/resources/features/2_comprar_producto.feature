@@ -1,6 +1,6 @@
 # language: es
 @regresion
-Característica: Registro de cliente en la pagina bon-bonite
+Característica: Comprar producto en la pagina bon-bonite
 
   @2_comprar_producto
   Esquema del escenario: : Ingresar a pagina de registro y registrar cliente

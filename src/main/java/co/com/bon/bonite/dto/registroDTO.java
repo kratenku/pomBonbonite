@@ -9,9 +9,11 @@ public class registroDTO {
     private String confirmarContrasenia;
     private String descripccion;
     private String tallaZapato;
+    private String telefono;
+    private String mensaje;
 
     public registroDTO(String cedula, String nombres, String apellidos, String correo, String contrasenia,
-                       String confirmarContrasenia,String descripccion, String tallaZapato) {
+                       String confirmarContrasenia,String descripccion, String tallaZapato, String telefono,String mensaje) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -20,6 +22,9 @@ public class registroDTO {
         this.confirmarContrasenia = confirmarContrasenia;
         this.descripccion = descripccion;
         this.tallaZapato = tallaZapato;
+        this.telefono = telefono;
+        this.mensaje = mensaje;
+
     }
 
     public String getCedula() {
@@ -86,5 +91,21 @@ public class registroDTO {
 
     public void setTallaZapato(String tallaZapato) {
         this.tallaZapato = tallaZapato;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 }
