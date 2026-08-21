@@ -26,19 +26,24 @@ public class hooksClass {
 
     @AfterStep
     public void captureExceptionEvidence(Scenario scenario) throws Exception {
-        if (scenario.isFailed()){
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            String timeMilliseconds = Long.toString(timestamp.getTime());
+
+
 
             byte[] screenshot = ((TakesScreenshot) getDriver())
                     .getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png",timeMilliseconds);
 
-        }
+            scenario.attach(
+                    screenshot,
+                    "image/png",
+                    "Screenshot"
+            );
+
     }
 
+
     @After
-    public void tearDown(){
+    public void tearDown() {
         cleanupDriver();
     }
 }
+

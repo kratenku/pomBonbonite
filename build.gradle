@@ -34,7 +34,7 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/com.aventstack/extentreports
     implementation("com.aventstack:extentreports:5.1.2")
     // Source: https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter
-    implementation("tech.grasshopper:extentreports-cucumber7-adapter:1.14.0")
+    testImplementation("tech.grasshopper:extentreports-cucumber7-adapter:1.14.0")
 
     // Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine
     testImplementation("io.cucumber:cucumber-junit-platform-engine:7.34.6")

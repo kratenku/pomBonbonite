@@ -12,15 +12,16 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 @SelectClasspathResource("features")
 @ConfigurationParameter(
         key = GLUE_PROPERTY_NAME,
-        value = "stepDefinitions"
+        value = "stepDefinitions,co.com.bon.bonite.helper"
 )
 @ConfigurationParameter(
         key = FILTER_TAGS_PROPERTY_NAME,
         value = "@2_comprar_producto"
 )
+
 @ConfigurationParameter(
         key = PLUGIN_PROPERTY_NAME,
-        value = "pretty,html:target/cucumber"
+        value = "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
 )
 public class runnerCompra {
 }

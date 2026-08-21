@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<extentreports>
+    <configuration>
+        <theme>standard</theme>
+
+        <documentTitle>Reporte Automatización Bon-Bonite</documentTitle>
+        <reportName>Pruebas Automatizadas</reportName>
+
+        <timeStampFormat>yyyy-MM-dd HH:mm:ss</timeStampFormat>
+
+        <encoding>UTF-8</encoding>
+    </configuration>
+</extentreports>
