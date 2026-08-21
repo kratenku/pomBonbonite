@@ -15,7 +15,7 @@ public class registroStepDefinition {
 
     public registroStepDefinition() throws Exception {
             this.pageRegistro = new registroPage();
-            this.modeloRegistro = new registroDTO("", "", "", "", "", "");
+            this.modeloRegistro = new registroDTO("", "", "", "", "", "","","");
     }
 
     @Dado("el usuario selecciona el boton de registro")

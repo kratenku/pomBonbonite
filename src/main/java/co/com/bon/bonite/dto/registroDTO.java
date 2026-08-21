@@ -7,14 +7,19 @@ public class registroDTO {
     private String correo;
     private String contrasenia;
     private String confirmarContrasenia;
+    private String descripccion;
+    private String tallaZapato;
 
-    public registroDTO(String cedula, String nombres, String apellidos, String correo, String contrasenia, String confirmarContrasenia) {
+    public registroDTO(String cedula, String nombres, String apellidos, String correo, String contrasenia,
+                       String confirmarContrasenia,String descripccion, String tallaZapato) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.confirmarContrasenia = confirmarContrasenia;
+        this.descripccion = descripccion;
+        this.tallaZapato = tallaZapato;
     }
 
     public String getCedula() {
@@ -65,5 +70,21 @@ public class registroDTO {
 
     public void setConfirmarContrasenia(String confirmarContrasenia) {
         this.confirmarContrasenia = confirmarContrasenia;
+    }
+
+    public String getDescripccion() {
+        return descripccion;
+    }
+
+    public void setDescripccion(String descripccion) {
+        this.descripccion = descripccion;
+    }
+
+    public String getTallaZapato() {
+        return tallaZapato;
+    }
+
+    public void setTallaZapato(String tallaZapato) {
+        this.tallaZapato = tallaZapato;
     }
 }
